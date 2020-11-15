@@ -3,8 +3,11 @@
     <div v-if="this.dataLoaded == false"></div>
     <div v-else class="wrapper">
       <h1 id="title">Workout Dashboard</h1>
-      <div id="weight-chart">
+      <div id="weight-chart" v-if="!isMobile()">
         <weight-chart :weightsData="this.weightsData" :datesData="this.datesData"/>
+      </div>
+      <div v-else>
+        <mobile-weight-chart :weightsData="this.weightsData" :datesData="this.datesData"/>
       </div>
       <div id="prs">
         <!-- <h6 style="text-align:center;margin-top:40px;">PRs</h6> -->
@@ -19,6 +22,7 @@
 
 <script>
 import WeightChart from '@/components/WeightChart';
+import MobileWeightChart from '@/components/MobileWeightChart';
 import Calendar from '@/components/Calendar';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 
@@ -26,7 +30,8 @@ export default {
   name: 'App',
   components: {
     Calendar,
-    WeightChart
+    WeightChart,
+    MobileWeightChart
   },
   data: () => ({
       dataLoaded: false,
@@ -83,17 +88,24 @@ export default {
     test().then((res) => this.setData(res));
   },
   methods: {
-        setData(res) {
-          var fullData = res[0];
-          var weights = res[1]; 
-          var dates = res[2];
-          var monthYears = res[3];
-          this.sheetsData = fullData;
-          this.weightsData = weights;
-          this.datesData = dates;
-          this.monthYearsData = monthYears;
-          this.dataLoaded = true;
-        }
+    setData(res) {
+      var fullData = res[0];
+      var weights = res[1]; 
+      var dates = res[2];
+      var monthYears = res[3];
+      this.sheetsData = fullData;
+      this.weightsData = weights;
+      this.datesData = dates;
+      this.monthYearsData = monthYears;
+      this.dataLoaded = true;
+    },
+    isMobile() {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
 }
 
@@ -101,14 +113,32 @@ export default {
 
 
 <style>
-.wrapper {
-  display: grid;
-  grid-template-areas: "title"
-                       "weight-chart"
-                       "prs"
-                       "calendar";
-  grid-template-columns: 100%;
-  grid-template-rows: 10vh 20vh 20vh auto;
+/* Mobile */
+/* only screen and (min-width: 480px) */
+
+/* Tablet */
+@media (max-width: 800px) {
+  .wrapper {
+    display: grid;
+    grid-template-areas: "title"
+                        "weight-chart"
+                        "prs"
+                        "calendar";
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh 20vh 0vh auto;
+  }
+}
+
+@media (min-width: 801px) {
+  .wrapper {
+    display: grid;
+    grid-template-areas: "title"
+                        "weight-chart"
+                        "prs"
+                        "calendar";
+    grid-template-columns: 100%;
+    grid-template-rows: 10vh 20vh 20vh auto;
+  }
 }
 
 .wrapper > #title {

@@ -65,13 +65,30 @@ export default {
   margin-right: 5%;
 }
 
-#days {
-    display: grid;
-    /* grid-gap: 5px; */
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    width: 100%;
-    grid-template-columns: repeat(7, 1fr);
+/* Mobile */
+/* only screen and (min-width: 480px) */
+
+/* Tablet */
+@media (max-width: 499px) {
+  #days {
+      display: grid;
+      /* grid-gap: 5px; */
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      width: 100%;
+      grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 500px) {
+  #days {
+      display: grid;
+      /* grid-gap: 5px; */
+      grid-column-gap: 10px;
+      grid-row-gap: 10px;
+      width: 100%;
+      grid-template-columns: repeat(7, 1fr);
+  }
 }
 
 .day{
