@@ -5,7 +5,8 @@
          @close="modalVisible = false" 
          :name="modalDate"
          :data="modalData"
-         id="modal"/>
+         id="modal"
+         v-on-clickaway="away"/>
 
     <div v-for="(dayData, monthYear) in dailyData" :key="monthYear">
 
@@ -36,10 +37,12 @@
 <script>
 import DayModal from '@/components/DayModal.vue'
 import Badge from '@/components/Badge.vue'
+import { mixin as clickaway } from 'vue-clickaway';
 
 export default {
   name: 'Calendar',
   props: ["dailyData", "monthYearsData"],
+  mixins: [ clickaway ],
   data: () => ({
       modalVisible: false,
       modalDate: null,
@@ -50,6 +53,10 @@ export default {
       this.modalDate = date
       this.modalData = data
       this.modalVisible = true
+    },
+    away: function() {
+      console.log('clicked away');
+      this.modalVisible = false;
     }
   },
   components: {
@@ -66,9 +73,6 @@ export default {
 }
 
 /* Mobile */
-/* only screen and (min-width: 480px) */
-
-/* Tablet */
 @media (max-width: 499px) {
   #days {
       display: grid;
@@ -78,8 +82,22 @@ export default {
       width: 100%;
       grid-template-columns: repeat(4, 1fr);
   }
+  #modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    width: 60%;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0F2027;  /* fallback for old browsers */   
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
 }
 
+/* Desktop/Tablet */
 @media (min-width: 500px) {
   #days {
       display: grid;
@@ -88,6 +106,18 @@ export default {
       grid-row-gap: 10px;
       width: 100%;
       grid-template-columns: repeat(7, 1fr);
+  }
+  #modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0F2027;  /* fallback for old browsers */   
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
 }
 
@@ -122,16 +152,5 @@ export default {
   font-family: 'Black Han Sans', sans-serif;
 }
 
-#modal {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #0F2027;  /* fallback for old browsers */   
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
+
 </style>

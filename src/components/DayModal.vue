@@ -28,39 +28,83 @@
     text-decoration: underline;
 }
 
-#date {
-    color: white;
-    font-family: 'Chivo', sans-serif;
-    text-align: center;
-    padding-top: 10px;
-    font-size: 25px;
+/* Desktop/Tablet */
+@media (min-width: 500px) {
+    #date {
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        text-align: center;
+        padding-top: 10px;
+        font-size: 25px;
+    }
+
+    .workout-category {
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        letter-spacing: 2px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .description {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #close-button {
+        width: 100%;
+        height: 40px;
+        background: rgb(15,32,39);
+        background: linear-gradient(152deg, rgba(15,32,39,1) 0%, rgba(32,58,67,1) 21%, rgba(15,32,39,1) 100%);
+        border: none;
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        font-size: 25px;
+        cursor:pointer;
+    }
 }
 
-.workout-category {
-    color: white;
-    font-family: 'Chivo', sans-serif;
-    letter-spacing: 2px;
-    padding-left: 30px;
-    padding-right: 30px;
+/* Mobile */
+@media (max-width: 499px) {
+    #date {
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        text-align: center;
+        padding-top: 10px;
+        font-size: 16px;
+    }
+
+    .workout-category {
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        letter-spacing: 2px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .description {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #close-button {
+        width: 100%;
+        height: 40px;
+        background: rgb(15,32,39);
+        background: linear-gradient(152deg, rgba(15,32,39,1) 0%, rgba(32,58,67,1) 21%, rgba(15,32,39,1) 100%);
+        border: none;
+        color: white;
+        font-family: 'Chivo', sans-serif;
+        font-size: 16px;
+        cursor:pointer;
+    }
 }
 
-.description {
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-#close-button {
-    width: 100%;
-    height: 40px;
-    background: rgb(15,32,39);
-    background: linear-gradient(152deg, rgba(15,32,39,1) 0%, rgba(32,58,67,1) 21%, rgba(15,32,39,1) 100%);
-    border: none;
-    color: white;
-    font-family: 'Chivo', sans-serif;
-    font-size: 25px;
-    cursor:pointer;
-}
 </style>

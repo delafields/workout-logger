@@ -12,7 +12,8 @@
     "core-js": "^3.6.5",
     "google-spreadsheet": "^3.0.13",
     "vue": "^2.6.11",
-    "vue-chartjs": "^3.5.1"
+    "vue-chartjs": "^3.5.1",
+    "vue-clickaway": "^2.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
